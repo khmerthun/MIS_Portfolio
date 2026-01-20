@@ -143,8 +143,6 @@ h1{ font-size: clamp(30px, 4vw, 48px); margin: 0 0 10px; line-height:1.15; }
   word-break: break-word;    /* fallback */
 }
 
-
-
 .profile-box{
   padding:16px;
   border-radius: var(--radius);
