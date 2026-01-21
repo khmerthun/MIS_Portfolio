@@ -127,12 +127,12 @@ h1{ font-size: clamp(30px, 4vw, 48px); margin: 0 0 10px; line-height:1.15; }
 .avatar{
   width: 100%;
   height: auto;          /* ⬅️ កុំ fix height */
-  max-height: 220px;     /* កំណត់កម្ពស់អតិបរមា */
+  max-height: 210px;     /* កំណត់កម្ពស់អតិបរមា */
   border-radius: var(--radius);
   border:1px solid var(--border);
   box-shadow: var(--shadow);
   object-fit: contain;   /* ⬅️ សំខាន់! មិនកាត់រូប */
-  background: #fff;      /* ឲ្យស្អាត */
+  background: #5c7dff;      /* ឲ្យស្អាត */
   display: block;
 }
 /* Fix long email/links overflow */
@@ -142,6 +142,8 @@ h1{ font-size: clamp(30px, 4vw, 48px); margin: 0 0 10px; line-height:1.15; }
   overflow-wrap: anywhere;   /* break long text */
   word-break: break-word;    /* fallback */
 }
+
+
 
 .profile-box{
   padding:16px;
@@ -316,3 +318,72 @@ body{
 @media (max-width: 520px){
   .menu a[href="#experience"]{ display:none; }
 }
+
+/* ===== Navbar (Hamburger) ===== */
+
+/* Make header positioning stable for absolute menu */
+.header{ position: sticky; top: 0; z-index: 50; }
+.nav{ position: relative; }
+
+/* Toggle button */
+.nav-toggle{
+  display:none;                 /* show on mobile only */
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Desktop menu stays normal */
+.menu{
+  display:flex;
+  gap:16px;
+  align-items:center;
+}
+
+/* Mobile behavior */
+@media (max-width: 520px){
+  .nav-toggle{ display:block; }
+
+  .menu{
+    display:none;               /* hidden by default */
+    position:absolute;
+    right:0;
+    top:58px;
+    width: min(240px, 92vw);
+    flex-direction:column;
+    align-items:stretch;
+    gap:8px;
+
+    padding:12px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    background: rgba(11,18,32,.96);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+  }
+
+  .menu.open{ display:flex; }
+
+  .menu a{
+    padding:10px 12px;
+    border-radius:12px;
+    color: var(--muted);
+  }
+  .menu a:hover{
+    color: var(--text);
+    background: rgba(255,255,255,.06);
+  }
+
+  /* Make Contact button full width on mobile */
+  .menu .btn{
+    width:100%;
+    text-align:center;
+  }
+}
+
+/* Prevent anchors being covered by header */
+section{ scroll-margin-top: 90px; }
